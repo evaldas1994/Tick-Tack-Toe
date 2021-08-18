@@ -4,8 +4,10 @@ namespace App\Http\Controllers\api;
 
 use App\Models\Box;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Collection;
+use Symfony\Component\HttpFoundation\Response;
 
 class BoxController extends Controller
 {
@@ -29,9 +31,21 @@ class BoxController extends Controller
     public function update(Request $request, Box $box): Box
     {
             $box->update(
-            $request->only('value')
+            $request->only('values')
         );
 
         return $box;
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Box $box
+     * @return JsonResponse
+     */
+    public function destroy(Box $box): JsonResponse
+    {
+        $box->delete();
+        return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
 }
