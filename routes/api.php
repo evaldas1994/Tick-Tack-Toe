@@ -15,5 +15,5 @@ use App\Http\Controllers\api\UserController;
 |
 */
 
-Route::apiResource('/user', UserController::class)->except('update');
+Route::apiResource('/user', UserController::class);
 Route::apiResource('/box', BoxController::class)->except('store', 'show', 'destroy');

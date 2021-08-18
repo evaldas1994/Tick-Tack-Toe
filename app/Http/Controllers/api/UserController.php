@@ -47,6 +47,20 @@ class UserController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @param User $user
+     * @return User
+     */
+    public function update(Request $request, User $user): User
+    {
+        $userService = new UserService();
+
+        return $userService->update($request, $user);
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param User $user

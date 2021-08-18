@@ -23,6 +23,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'sign' => null,
         ];
     }
 }
