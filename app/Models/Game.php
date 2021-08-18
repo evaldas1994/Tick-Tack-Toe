@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Box extends Model
+class Game extends Model
 {
     use HasFactory;
 
@@ -17,8 +17,8 @@ class Box extends Model
      * @var array
      */
     protected $fillable = [
-        'game_id',
-        'location',
-        'value',
+        'user1_id',
+        'user2_id',
+        'box_id'
     ];
 }

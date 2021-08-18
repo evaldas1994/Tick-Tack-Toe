@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Box;
 use App\Models\User;
+use App\Models\Game;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         User::factory(2)->create();
-         Box::factory(9)->create();
+        User::factory(2)->create();
+        Box::factory(1)->create();
+        Game::factory(1)->create();
     }
 }

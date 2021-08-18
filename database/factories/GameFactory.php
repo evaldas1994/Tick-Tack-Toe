@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Box;
+use App\Models\Game;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class BoxFactory extends Factory
+class GameFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Box::class;
+    protected $model = Game::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,9 @@ class BoxFactory extends Factory
     public function definition(): array
     {
         return [
-            'values' => implode(', ', [null, null, null, null, null, null, null, null, null]),
+            'user1_id' => 1,
+            'user2_id' => 2,
+            'box_id' => 1
         ];
     }
 }
