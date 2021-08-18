@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\api\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\BoxController;
+use App\Http\Controllers\api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResource('/user', UserController::class)->except('update');
+Route::apiResource('/box', BoxController::class)->except('store', 'show', 'destroy');
