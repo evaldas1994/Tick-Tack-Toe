@@ -8,7 +8,6 @@ class LogService
 {
     public function create($request): Log
     {
-//        dd($request->message);
         $request->validate([
             'game_id' => ['required', 'exists:games,id'],
             'message' => ['required', 'min:3', 'max:255']

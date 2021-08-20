@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Models\Game;
 use App\Models\Log;
 use App\Service\LogService;
 use Illuminate\Http\Request;
@@ -57,4 +58,19 @@ class LogController extends Controller
         $log->delete();
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
+
+    /**
+     * @param $game
+     * @return Collection|null
+     */
+    public function getLogsByGameId($game): ?Collection
+    {
+        $game = Game::find($game);
+        if ($game) {
+            return $game->logs;
+        }
+
+        return null;
+    }
+
 }
