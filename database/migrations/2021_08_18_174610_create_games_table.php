@@ -15,9 +15,9 @@ class CreateGamesTable extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user1_id');
-            $table->unsignedBigInteger('user2_id');
-            $table->unsignedBigInteger('box_id');
+            $table->unsignedBigInteger('user1_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user2_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('box_id')->references('id')->on('boxes')->onDelete('cascade');;
         });
     }
 

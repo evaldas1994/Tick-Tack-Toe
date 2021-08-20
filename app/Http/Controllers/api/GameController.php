@@ -54,7 +54,12 @@ class GameController extends Controller
      */
     public function destroy(Game $game): JsonResponse
     {
+        $game->logs()->delete();
+        $game->user1()->delete();
+        $game->user2()->delete();
+        $game->box()->delete();
         $game->delete();
+
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
 }

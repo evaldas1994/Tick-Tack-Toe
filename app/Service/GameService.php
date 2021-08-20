@@ -23,11 +23,13 @@ class GameService
                 'values' => 'null, null, null, null, null, null, null, null, null'
             ]);
 
-            return Game::create([
+            $game = Game::create([
                 'user1_id' => $user1->id,
                 'user2_id' => $user2->id,
                 'box_id' => $box->id
             ]);
+
+            return $game;
         } else {
             return null;
         }
