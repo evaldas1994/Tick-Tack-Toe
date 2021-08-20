@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @method static create(array $array)
@@ -48,5 +48,13 @@ class Game extends Model
     public function box(): HasOne
     {
         return $this->hasOne(Box::class, 'id', 'box_id');
+    }
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function logs()
+    {
+        return $this->hasMany(Log::class);
     }
 }
