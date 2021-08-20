@@ -7,17 +7,23 @@ use Illuminate\Validation\Rule;
 
 class UserService
 {
-    public function create($request): User
+    public function create($request, $name="name", $sign=null): User
     {
+
+//        dd($request->name1);
+
         $request->validate([
-            'name' => ['required', 'min:3', 'max:50', 'unique:users'],
+            $name => ['required', 'min:3', 'max:50', 'unique:users,name'],
             'sign' => ['regex:(X|O|NULL)']
         ]);
 
 
+
+//        dd($request->name1);
+
         return User::create([
-            'name' => $request->name,
-            'sign' => $request->sign,
+            'name' => $request->$name,
+            'sign' => $sign
         ]);
     }
 

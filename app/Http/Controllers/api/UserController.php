@@ -17,7 +17,7 @@ class UserController extends Controller
      *
      * @return Collection
      */
-    public function index():Collection
+    public function index(): Collection
     {
         return User::all();
     }

@@ -22,6 +22,21 @@ class BoxController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return Box
+     */
+    public function store(Request $request):Box
+    {
+        $box = Box::create([
+            'values' => $request->values
+        ]);
+
+        return $box;
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param Request $request

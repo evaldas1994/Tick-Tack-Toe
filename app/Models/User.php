@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * @method static create(array $array)
+ * @method static where(string $string, string $string1, $name1)
  */
 class User extends Authenticatable
 {

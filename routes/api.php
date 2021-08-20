@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\GameController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\BoxController;
 use App\Http\Controllers\api\UserController;
@@ -16,4 +17,5 @@ use App\Http\Controllers\api\UserController;
 */
 
 Route::apiResource('/user', UserController::class);
-Route::apiResource('/box', BoxController::class)->except('store', 'show');
+Route::apiResource('/box', BoxController::class)->except('show');
+Route::apiResource('/game', GameController::class)->except('update');
