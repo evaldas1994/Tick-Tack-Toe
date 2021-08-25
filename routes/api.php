@@ -22,3 +22,6 @@ Route::apiResource('/box', BoxController::class)->except('show');
 Route::apiResource('/game', GameController::class)->except('update');
 Route::apiResource('/log', LogController::class)->except('update');
 Route::get('/logsByGame/{game}', [LogController::class, 'getLogsByGameId']);
+Route::get('/getUsersByGame/{game}', [GameController::class, 'getUsersByGame']);
+Route::get('/getBoxesByGame/{game}', [GameController::class, 'getBoxesByGame']);
+Route::patch('/reset/{game}', [GameController::class, 'reset']);

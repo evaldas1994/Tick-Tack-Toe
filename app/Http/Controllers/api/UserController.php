@@ -71,4 +71,8 @@ class UserController extends Controller
         $user->delete();
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
+//
+//    public function getUsersByGameId(int gameId) {
+//
+//    }
 }

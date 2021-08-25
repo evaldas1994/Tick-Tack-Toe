@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -23,8 +24,7 @@ class Game extends Model
      */
     protected $fillable = [
         'user1_id',
-        'user2_id',
-        'box_id'
+        'user2_id'
     ];
 
     /**
@@ -46,9 +46,10 @@ class Game extends Model
     /**
      * Get the phone associated with the user.
      */
-    public function box(): HasOne
+    public function boxes(): HasMany
     {
-        return $this->hasOne(Box::class, 'id', 'box_id');
+        return $this->hasMany(Box::class);
+//        return $this->hasOne(Box::class, 'id', 'box_id');
     }
 
     /**

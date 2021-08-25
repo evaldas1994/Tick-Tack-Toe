@@ -20,6 +20,8 @@ class Box extends Model
      * @var array
      */
     protected $fillable = [
-        'values',
+        'game_id',
+        'location',
+        'value',
     ];
 }

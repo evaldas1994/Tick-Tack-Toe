@@ -23,8 +23,7 @@ class GameFactory extends Factory
     {
         return [
             'user1_id' => 1,
-            'user2_id' => 2,
-            'box_id' => 1
+            'user2_id' => 2
         ];
     }
 }

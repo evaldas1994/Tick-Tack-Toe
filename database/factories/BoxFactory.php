@@ -22,7 +22,9 @@ class BoxFactory extends Factory
     public function definition(): array
     {
         return [
-            'values' => implode(', ', [null, null, null, null, null, null, null, null, null]),
+            'game_id' => 1,
+            'location' => 1,
+            'value' => null
         ];
     }
 }

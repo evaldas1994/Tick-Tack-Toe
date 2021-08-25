@@ -17,7 +17,6 @@ class CreateGamesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user1_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('user2_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('box_id')->references('id')->on('boxes')->onDelete('cascade');;
         });
     }
 

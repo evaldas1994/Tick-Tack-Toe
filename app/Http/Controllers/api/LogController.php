@@ -29,11 +29,12 @@ class LogController extends Controller
      * @param Request $request
      * @return Log
      */
-    public function store(Request $request): Log
+    public function store(Request $request): string
     {
         $logService = new LogService();
 
-        return $logService->create($request);
+        $log = $logService->create($request);
+        return json_encode(['success' => true, 'message' => 'log created successfully', 'log' => $log]);
     }
 
     /**
@@ -63,14 +64,15 @@ class LogController extends Controller
      * @param $game
      * @return Collection|null
      */
-    public function getLogsByGameId($game): ?Collection
+    public function getLogsByGameId($game): string
     {
         $game = Game::find($game);
         if ($game) {
-            return $game->logs;
+            return json_encode(['success' => true, 'message' => 'logs got successfully', 'logs' => $game->logs]);
         }
 
-        return null;
+        return json_encode(['success' => false, 'message' => 'something wrong']);
     }
+
 
 }

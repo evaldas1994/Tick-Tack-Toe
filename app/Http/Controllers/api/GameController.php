@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use function MongoDB\BSON\toJSON;
 
 class GameController extends Controller
 {
@@ -28,11 +29,11 @@ class GameController extends Controller
      * @param Request $request
      * @return Game
      */
-    public function store(Request $request): ?Game
+    public function store(Request $request): string
     {
         $gameService = new GameService();
 
-        return $gameService->create($request);
+        return json_encode($gameService->create($request));
     }
 
     /**
@@ -41,9 +42,9 @@ class GameController extends Controller
      * @param Game $game
      * @return Game
      */
-    public function show(Game $game): Game
+    public function show(Game $game): string
     {
-        return $game;
+        return json_encode(['success' => true, 'message' => 'game found successfully', 'game' => $game]);
     }
 
     /**
@@ -52,14 +53,28 @@ class GameController extends Controller
      * @param Game $game
      * @return JsonResponse
      */
-    public function destroy(Game $game): JsonResponse
+    public function destroy(Game $game): string
     {
         $game->logs()->delete();
         $game->user1()->delete();
         $game->user2()->delete();
-        $game->box()->delete();
+        $game->boxes()->delete();
         $game->delete();
 
-        return new JsonResponse(null, Response::HTTP_NO_CONTENT);
+        return json_encode(['success' => true, 'message' => 'game deleted successfully']);
+    }
+
+    public function getUsersByGame(Game $game) {
+        return json_encode(['success' => true, 'message' => 'users found successfully', 'users' => [$game->user1, $game->user2]]);
+    }
+
+    public function getBoxesByGame(Game $game) {
+        return json_encode(['success' => true, 'message' => 'boxes found successfully', 'boxes' => $game->boxes]);
+    }
+
+    public function reset(Game $game) {
+        $game->boxes()->update(['value' => null]);
+        $game->logs()->delete();
+        return json_encode(['success' => true, 'message' => 'boxes updated successfully', 'boxes' => $game->boxes]);
     }
 }

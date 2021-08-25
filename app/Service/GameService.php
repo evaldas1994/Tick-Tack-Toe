@@ -8,7 +8,7 @@ use App\Models\User;
 
 class GameService
 {
-    public function create($request): ?Game
+    public function create($request): array
     {
         if ($this->isUsersNotExists($request->user1_name, $request->user2_name)) {
             $userService = new UserService();
@@ -19,19 +19,25 @@ class GameService
             $user1 = $userService->create($request, 'user1_name', $user1_sign);
             $user2 = $userService->create($request, 'user2_name', $user2_sign);
 
-            $box = Box::create([
-                'values' => 'null, null, null, null, null, null, null, null, null'
-            ]);
-
             $game = Game::create([
                 'user1_id' => $user1->id,
-                'user2_id' => $user2->id,
-                'box_id' => $box->id
+                'user2_id' => $user2->id
             ]);
 
-            return $game;
+            for ($i = 0; $i < 9; $i++) {
+                Box::create([
+                    'game_id' => $game->id,
+                    'location' => $i+1,
+                    'value' => null
+                ]);
+            }
+
+            $game['boxes'] = $game->boxes;
+
+            return ['success' => true, 'message' => 'game created successfully', 'game' => $game];
         } else {
-            return null;
+            return ['success' => false, 'message' => 'game not created'];
+
         }
 
     }
@@ -62,4 +68,5 @@ class GameService
             }
         }
     }
+
 }

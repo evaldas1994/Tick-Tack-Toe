@@ -43,13 +43,11 @@ class BoxController extends Controller
      * @param Box $box
      * @return Box
      */
-    public function update(Request $request, Box $box): Box
+    public function update(Request $request, Box $box): array
     {
-            $box->update(
-            $request->only('values')
-        );
+        $box->update($request->only('value'));
 
-        return $box;
+        return ['success' => true, 'message' => 'box updated successfully', 'box' => $box];
     }
 
     /**

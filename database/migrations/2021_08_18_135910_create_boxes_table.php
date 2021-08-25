@@ -15,7 +15,9 @@ class CreateBoxesTable extends Migration
     {
         Schema::create('boxes', function (Blueprint $table) {
             $table->id();
-            $table->string('values');
+            $table->unsignedBigInteger('game_id');
+            $table->unsignedInteger('location');
+            $table->string('value')->nullable();
         });
     }
 
